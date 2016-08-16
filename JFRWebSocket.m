@@ -363,7 +363,7 @@ static const size_t  JFRMaxFrameSize        = 32;
         NSInteger length = [self.inputStream read:buffer maxLength:BUFFER_MAX];
         if(length > 0) {
             if(!self.isConnected) {
-                CFIndex responseStatusCode;
+                CFIndex responseStatusCode = 0;
                 BOOL status = [self processHTTP:buffer length:length responseStatusCode:&responseStatusCode];
 #if defined(DEBUG)
                 if (length < BUFFER_MAX) {
@@ -703,7 +703,12 @@ static const size_t  JFRMaxFrameSize        = 32;
         if(isMask) {
             buffer[1] |= JFRMaskMask;
             uint8_t *mask_key = (buffer + offset);
+
+			#pragma clang diagnostic push
+			#pragma clang diagnostic ignored "-Wunused-result"
             SecRandomCopyBytes(kSecRandomDefault, sizeof(uint32_t), (uint8_t *)mask_key);
+			#pragma clang diagnostic pop
+
             offset += sizeof(uint32_t);
             
             for (size_t i = 0; i < dataLength; i++) {

@@ -55,8 +55,8 @@
 
 /**
  constructor to create a new websocket.
- @param: url is the host you want to connect to.
- @param: protocols are the websocket protocols you want to use (e.g. chat,superchat).
+ @param url is the host you want to connect to.
+ @param protocols are the websocket protocols you want to use (e.g. chat,superchat).
  @return a newly initalized websocket.
  */
 - (instancetype)initWithURL:(NSURL *)url protocols:(NSArray*)protocols;
@@ -73,26 +73,26 @@
 
 /**
  write binary based data to the socket.
- @param is the binary data to write.
+ @param data is the binary data to write.
  */
 - (void)writeData:(NSData*)data;
 
 /**
  write text based data to the socket.
- @param is the string to write.
+ @param string is the string to write.
  */
 - (void)writeString:(NSString*)string;
 
 /**
  write ping to the socket.
- @param is the binary data to write (if desired).
+ @param data is the binary data to write (if desired).
  */
 - (void)writePing:(NSData*)data;
 
 /**
  Add a header to send along on the the HTTP connect.
- @param: value is the string to send
- @param: key is the HTTP key name to send
+ @param value is the string to send
+ @param key is the HTTP key name to send
  */
 - (void)addHeader:(NSString*)value forKey:(NSString*)key;
 
